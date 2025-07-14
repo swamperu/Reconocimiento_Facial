@@ -1,0 +1,65 @@
+﻿@using MED.Security.API.AuthorizationService;
+@{
+    /**/
+
+    ViewBag.Title = "Reportes";
+}
+
+<div id="container_bandeja">
+    <div class="row">
+        <div class="col-lg-16">
+            <div class="block">
+                <div class="modal-content animated fadeIn" style="box-shadow:none;">
+                    <div class="modal-body">
+                        <div class="block-title" id="titulo">
+                            <h5>REPORTES</h5>
+                        </div>
+                        @Html.Hidden("hfAnioActual", "", new { Value = @ViewBag.Anio_Actual })
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.Label("ddlFilTID_TIPO_REPORTE", "TIPO DE REPORTE", new { Class = "control-label" })
+                                @Html.DropDownList("ddlFilTID_TIPO_REPORTE", ViewBag.lisTIPO_REPORTE as SelectList, new { Class = "form-control input-sm" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.Label("txtFiNUMERO_DOCUMENTO", "N° DNI", new { Class = "control-label" })
+                                @Html.TextBox("txtFiNUMERO_DOCUMENTO", "", new { Class = "form-control input-sm", maxlength = "10" })
+                            </div>
+
+                            <div class="col-md-3" id="cntFilFECHA_DESDE">
+                                <div id="dtpFilFECHA_DESDE">
+                                    @Html.MEDPicker("FilFECHA_DESDE", "Período: DEL", new Dictionary<string, object> { { "maxlength", "10" }, { "Value", @ViewBag.Fecha_Inicio } })
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" id="cntFilFECHA_HASTA">
+                                <div id="dtpFilFECHA_HASTA">
+                                    @Html.MEDPicker("FilFECHA_HASTA", "AL", new Dictionary<string, object> { { "maxlength", "10" }, { "Value", @ViewBag.Fecha_Actual } })
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id='btnRepAceptar' class="btn btn-sm btn-success"><i class="fa fa-cogs"></i> Generar Reporte</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="idmenuset" value="0100" />
+<input type="hidden" name="idopcset" value="0102" />
+@section Scripts {
+    <script type="text/javascript" nonce="@Html.ScriptNonce()" src="@Url.Content("~/Scripts/views/Control/reporte.js?v=" + @ViewBag.MED_VERSION_JS + "")"></script>
+
+}

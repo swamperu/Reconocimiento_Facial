@@ -1,0 +1,90 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Parámetros";
+}
+
+<div id="container_bandeja">
+    <div class="row">
+        <div class="col-lg-16">
+            <div class="block">
+                <div class="modal-content animated fadeIn" style="box-shadow:none;">
+                    <div class="modal-body">
+                        <div class="block-title" id="titulo">
+                            <h5>PARÁMETROS</h5>
+                        </div>
+                        @Html.Hidden("hfAnioActual", "", new { Value = @ViewBag.Anio_Actual })
+                        <div class="row">
+                            
+                            @*<div class="col-md-7 text-right" style="line-height:28px;">
+                                <br />
+                                <button type="button" id='btnManConsulta' class="btn btn-sm btn-primary" style="margin-right:8px;"><i class="fa fa-search"></i> &nbsp; Buscar</button>
+                                <button type="button" id='btnManLimpiar' class="btn btn-sm btn-default" style="margin-right:8px;"><i class="fa fa-refresh"></i> &nbsp; Limpiar</button>
+                                <button type="button" id='btnManNuevo' class="btn btn-sm btn-success"><i class="fa fa-file"></i> &nbsp; Nuevo</button>
+                            </div>*@
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-16">
+                                <div class="jqGrid_wrapper" id="contData">
+                                    <table id="tblData"></table>
+                                    <div id="pagData"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal inmodal" id="dialogRegParametro" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content animated fadeIn" style="box-shadow:none;" id="registro_parametro">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="m-demo-icon__preview">
+                    <!--<i class="flaticon-folder-4"></i>-->
+                </div>
+                <h4 class="modal-title">Registro de parámetros</h4>
+                <small>Ingrese los datos para registrar el párametro del sistema</small>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("txtParCODIGO", "CÓDIGO", new { Class = "control-label" })<span class="requerido"> (*)</span>
+                        @Html.TextBox("txtParCODIGO", "", new { Class = "form-control input-sm", disabled = "disabled" })
+                    </div>
+
+                    <div class="col-md-16">
+                        @Html.Label("txtParNOMBRE", "NOMBRE", new { Class = "control-label" })<span class="requerido"> (*)</span>
+                        @Html.TextBox("txtParNOMBRE", "", new { Class = "form-control input-sm", maxlength = "250" })
+                    </div>
+
+                    <div class="col-md-16">
+                        @Html.Label("txtParVALOR", "VALOR", new { Class = "control-label" })<span class="requerido"> (*)</span>
+                        @Html.TextBox("txtParVALOR", "", new { Class = "form-control input-sm", maxlength = "250" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id='btnParAceptar' class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Grabar</button>
+                <button type="button" id='btnParCancelar' class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<input type="hidden" name="idmenuset" value="0500" />
+<input type="hidden" name="idopcset" value="0503" />
+@section Scripts {
+    <script type="text/javascript" nonce="@Html.ScriptNonce()" src="@Url.Content("~/Scripts/views/Mantenimientos/parametro.js?v=" + @ViewBag.MED_VERSION_JS + "")"></script>
+
+}
+

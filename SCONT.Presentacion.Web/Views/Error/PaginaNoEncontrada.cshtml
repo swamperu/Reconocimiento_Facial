@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>Página no Encontrada</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0" />
+    <!-- CSS -->
+    <link rel="shortcut icon" href="#" />
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="row" style="background-color: #394263; margin: 0; padding: 0; ">
+        <div class="col-md-8 text-left">
+            @*<img src="~/Images/logo_med.png" style="width: 255px; margin: 9px; margin-left: 50px;">*@
+        </div>
+    </div>
+
+    <div style="height :100%; width:100%; margin: 0 auto; position:relative ; padding :0;">
+
+        <div class="container-fluid" style="margin-left: 50px; padding:15px;">
+            <div id="container_bandeja">
+                <div class="row">
+                    <div class="col-lg-16">
+                        <div class="block">
+                            <div class="modal-content animated fadeIn" style="box-shadow:none;">
+                                <div class="row text-center" style="padding-top:35px;padding-bottom:35px;">
+                                    @*<div class="col-md-16">
+                                        <p style="font-size:25px; font-weight:bold;">404 Página No Encontrada</p>
+                                    </div>*@
+                                    <div class="col-md-16">
+                                        <img src="~/Images/error/no_encontrada.jpg" />
+                                    </div>
+                                    <div class="col-md-16" style="font-size:16px;">
+                                        <br />
+                                        Lo sentimos, la página a la que intenta acceder no ha sido encontrada.<br />
+                                        Es posible que la entrada haya sido eliminada o que la dirección no exista.
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ini footer-->
+    <div id="footer">
+        <div style="line-height:24px;">
+            <strong> &nbsp;© Derechos Reservados 2024</strong> Sistema de Control de Asistencia v.1.0
+        </div>
+    </div>
+</body>
+</html>
+

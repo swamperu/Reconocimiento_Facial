@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>Compatibilidad del Navegador</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0" />
+
+    <!-- CSS -->
+    @Styles.Render("~/Content/css")
+    <script nonce="@Html.ScriptNonce()" src="~/Scripts/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
+    <script nonce="@Html.ScriptNonce()" src="~/Scripts/vendor/jquery-1.11.1.min.js"></script>
+    <script nonce="@Html.ScriptNonce()" src="~/Scripts/vendor/bootstrap.min.js"></script>
+    <script nonce="@Html.ScriptNonce()" src="~/Scripts/plugins.js"></script>
+
+    <script type="text/javascript" nonce="@Html.ScriptNonce()">
+        $(document).ready(function () {
+            var dialogReg = $('#dialogReg');
+            dialogReg.modal({ keyboard: false, backdrop: 'static', show: true });
+
+            var nombre = "";
+            var version = "";
+            var ua = navigator.userAgent, tem,
+            M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                nombre = 'IE ' + (tem[1] || '');
+                if (parseFloat((tem[1] || '')) < 10) {
+                    return;
+                }
+            }
+            if (M[1] === 'Chrome') {
+                tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+                if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+            nombre = M[0];
+            version = M[1];
+            if (nombre.toUpperCase() == "MSIE" && parseFloat(version) <= 10) {
+                return;
+            }
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+
+        });
+    </script>
+</head>
+<body>
+    <div class="row" style="background-color: #394263; margin: 0; padding: 0; ">
+        <div class="col-md-8 text-left">
+            <img src="~/Images/logo_med.png" style="width: 255px; margin: 9px; margin-left: 50px;">
+        </div>
+    </div>
+
+    <div style="height :100%; width:100%; margin: 0 auto; position:relative ; padding :0;">
+
+        <div class="container-fluid" style="margin-left: 50px; padding:15px;">
+            <h3 class="sub-header">La versión de Internet Explorer que está usando no es compatible.</h3>
+
+            <p style="margin-top:10px; line-height:5px;"><strong>Estimado visitante,</strong></p>
+            <p style="line-height:5px;">La versión de Internet Explorer que está usando en este momento debe ser actualizada para que pueda navegar en este sitio sin problemas.</p>
+            <p style="line-height:5px;">Por favor siga las instrucciones a continuación:</p>
+            <p style="line-height:20px;">
+                &nbsp;&nbsp;&nbsp;1. Actualice su versión de Internet Explorer a una versión 10 o superior.<br />
+                &nbsp;&nbsp;&nbsp;2. Luego de actualizar, por favor ingrese nuevamente.
+            </p>
+            <p style="line-height:5px;">Muchas gracias por su atención.</p>
+        </div>
+    </div>
+
+    <!--ini footer-->
+    <div id="footer">
+        <div style="line-height:24px;">
+            <strong> &nbsp;© Derechos Reservados 2020</strong> Ministerio de Educación - Sistema de Gestión de Contratos - SGC
+        </div>
+    </div>
+</body>
+</html>
+

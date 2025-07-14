@@ -1,0 +1,211 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Trabajadores";
+}
+
+<div id="container_bandeja">
+    <div class="row">
+        <div class="col-lg-16">
+            <div class="block">
+                <div class="modal-content animated fadeIn" style="box-shadow:none;">
+                    <div class="modal-body">
+                        <div class="block-title" id="titulo">
+                            <h2>TRABAJADORES</h2>
+                        </div>
+                        @Html.Hidden("hfAnioActual", "", new { Value = @ViewBag.Anio_Actual })
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label("txtFilDNI", "DNI", new { Class = "control-label" })
+                                @Html.TextBox("txtFilDNI", "", new { Class = "form-control input-sm", maxlength = "8", Disabled = "true" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label("txtFilAPELLIDO_PATERNO", "APELLIDO PATERNO", new { Class = "control-label" })
+                                @Html.TextBox("txtFilAPELLIDO_PATERNO", "", new { Class = "form-control input-sm", maxlength = "50", Disabled = "true" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label("txtFilAPELLIDO_MATERNO", "APELLIDO MATERNO", new { Class = "control-label" })
+                                @Html.TextBox("txtFilAPELLIDO_MATERNO", "", new { Class = "form-control input-sm", maxlength = "50", Disabled = "true" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10" style="line-height:28px;">
+                            </div>
+                            <div class="col-md-6 text-right" style="line-height:28px;">
+                                <button type="button" id='btnManConsulta' class="btn btn-sm btn-primary" style="margin-right:8px;"><i class="fa fa-search"></i> &nbsp; Buscar</button>
+                                <button type="button" id='btnManLimpiar' class="btn btn-sm btn-default" style="margin-right:8px;"><i class="fa fa-refresh"></i> &nbsp; Limpiar</button>
+                                <button type="button" id='btnManNuevo' class="btn btn-sm btn-success"><i class="fa fa-file"></i> &nbsp; Nuevo</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-16">
+                                <div class="jqGrid_wrapper" id="contData">
+                                    <table id="tblData"></table>
+                                    <div id="pagData"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal inmodal" id="dialogRegistro" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content animated fadeIn" style="box-shadow:none;" id="registro_usuario">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="m-demo-icon__preview">
+                    <!--<i class="flaticon-folder-4"></i>-->
+                </div>
+                <h4 class="modal-title">Registro de trabajador</h4>
+                <small>Ingrese los datos para registrar un trabajador</small>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("txtRegDNI", "N° DNI", new { Class = "control-label" })<span class="requerido"> (*)</span>
+                        @Html.TextBox("txtRegDNI", "", new { Class = "form-control input-sm", maxlength = "8" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtRegNOMBRES", "NOMBRES", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtRegNOMBRES", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtRegAPELLIDO_PATERNO", "APELLIDO PATERNO", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtRegAPELLIDO_PATERNO", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtRegAPELLIDO_MATERNO", "APELLIDO MATERNO", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtRegAPELLIDO_MATERNO", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("ddlRegGENERO", "GÉNERO", new { Class = "control-label" })
+                        @Html.DropDownList("ddlRegGENERO", ViewBag.lisGENERO as SelectList, new { Class = "form-control input-sm" })
+                    </div>
+                    <div class="col-md-4" id="cntRegFECHA_NACIMIENTO">
+                        <div id="dtpRegFECHA_NACIMIENTO">
+                            @Html.MEDPicker("RegFECHA_NACIMIENTO", "FECHA NACIMIENTO", new Dictionary<string, object> { { "maxlength", "10" } }, false)
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        @Html.Label("txtRegCORREO", "CORREO ELECTRÓNICO", new { Class = "control-label" })
+                        @Html.TextBox("txtRegCORREO", "", new { Class = "form-control input-sm", maxlength = "150" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("ddlRegHORARIO_LABORAL", "HORARIO LABORAL", new { Class = "control-label" })
+                        @Html.DropDownList("ddlRegHORARIO_LABORAL", ViewBag.lisHORARIO as SelectList, new { Class = "form-control input-sm" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtRegTELEFONO", "N° CELULAR", new { Class = "control-label" })
+                        @Html.TextBox("txtRegTELEFONO", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+                    <div class="col-md-4" id="cntRegFECHA_INGRESO">
+                        <div id="dtpRegFECHA_INGRESO">
+                            @Html.MEDPicker("RegFECHA_INGRESO", "FECHA INGRESO", new Dictionary<string, object> { { "maxlength", "10" } }, false)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-16">
+                        <h5 class="sub-header">Dirección actual</h5>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("ddlRegDEPARTAMENTO", "DEPARTAMENTO", new { Class = "control-label" })
+                        @Html.DropDownList("ddlRegDEPARTAMENTO", ViewBag.lisDEPARTAMENTO as SelectList, new { Class = "form-control input-sm" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("ddlRegPROVINCIA", "PROVINCIA", new { Class = "control-label" }) 
+                        @Html.DropDownList("ddlRegPROVINCIA", ViewBag.lisVacio as SelectList, new { Class = "form-control input-sm" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("ddlRegDISTRITO", "DISTRITO", new { Class = "control-label" })
+                        @Html.DropDownList("ddlRegDISTRITO", ViewBag.lisVacio as SelectList, new { Class = "form-control input-sm" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-16">
+                        @Html.Label("txtRegDIRECCION", "DIRECCIÓN", new { Class = "control-label" })
+                        @Html.TextBox("txtRegDIRECCION", "", new { Class = "form-control input-sm", maxlength = "300" })
+                    </div>
+
+                </div>
+
+                @*<div class="row">
+                    <div class="col-md-4">
+                        <button type="button" id='btnRegImagenes' class="btn btn-sm btn-success"><i class="fa fa-photo"></i> &nbsp; Capturar imágenes</button>
+                    </div>
+                </div>*@
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id='btnRegAceptar' class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Grabar</button>
+                <button type="button" id='btnRegCancelar' class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal inmodal" id="dialogLog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content animated fadeIn" style="box-shadow:none;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="m-demo-icon__preview">
+                    <!--<i class="flaticon-folder-4"></i>-->
+                </div>
+                <h4 class="modal-title">Seguimiento a la captura de imágenes</h4>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-16" style="height:350px !important; overflow-y: auto;  overflow-x: hidden; line-height:20px!important; ">
+                        <span id="seguimiento_log"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id='btnLogAceptar' class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Finalizar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<input type="hidden" name="idmenuset" value="0500" />
+<input type="hidden" name="idopcset" value="0502" />
+@section Scripts {
+    <script type="text/javascript" nonce="@Html.ScriptNonce()" src="@Url.Content("~/Scripts/views/Mantenimientos/trabajador.js?v=" + @ViewBag.MED_VERSION_JS + "")"></script>
+
+}
+

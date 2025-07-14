@@ -1,0 +1,159 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Usuarios";
+}
+
+<div id="container_bandeja">
+    <div class="row">
+        <div class="col-lg-16">
+            <div class="block">
+                <div class="modal-content animated fadeIn" style="box-shadow:none;">
+                    <div class="modal-body">
+                        <div class="block-title" id="titulo">
+                            <h2>USUARIOS</h2>
+                        </div>
+                        @Html.Hidden("hfAnioActual", "", new { Value = @ViewBag.Anio_Actual })
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label("txtFilDNI", "DNI", new { Class = "control-label" })
+                                @Html.TextBox("txtFilDNI", "", new { Class = "form-control input-sm", maxlength = "8", Disabled = "true" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label("txtFilAPELLIDO_PATERNO", "APELLIDO PATERNO", new { Class = "control-label" })
+                                @Html.TextBox("txtFilAPELLIDO_PATERNO", "", new { Class = "form-control input-sm", maxlength = "50", Disabled = "true" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label("txtFilAPELLIDO_MATERNO", "APELLIDO MATERNO", new { Class = "control-label" })
+                                @Html.TextBox("txtFilAPELLIDO_MATERNO", "", new { Class = "form-control input-sm", maxlength = "50", Disabled = "true" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label("ddlFilID_ROL", "ROL", new { Class = "control-label" })
+                                @Html.DropDownList("ddlFilID_ROL", ViewBag.lisFilROL_USUARIO as SelectList, new { Class = "form-control input-sm" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10" style="line-height:28px;">
+                                @*<button type="button" id='btnManRepLogistica' class="btn btn-sm btn-info" style="margin-right:8px;"><i class="fa fa-file-excel-o"></i> &nbsp; Exportar usuarios de OL</button>
+                                <button type="button" id='btnManRepOficina' class="btn btn-sm btn-info" style="margin-right:8px;"><i class="fa fa-file-excel-o"></i> &nbsp; Exportar usuarios de Oficinas</button>*@
+                            </div>
+                            <div class="col-md-6 text-right" style="line-height:28px;">
+                                <button type="button" id='btnManConsulta' class="btn btn-sm btn-primary" style="margin-right:8px;"><i class="fa fa-search"></i> &nbsp; Buscar</button>
+                                <button type="button" id='btnManLimpiar' class="btn btn-sm btn-default" style="margin-right:8px;"><i class="fa fa-refresh"></i> &nbsp; Limpiar</button>
+                                <button type="button" id='btnManNuevo' class="btn btn-sm btn-success"><i class="fa fa-file"></i> &nbsp; Nuevo</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-16">
+                                <div class="jqGrid_wrapper" id="contData">
+                                    <table id="tblData"></table>
+                                    <div id="pagData"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal inmodal" id="dialogRegUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content animated fadeIn" style="box-shadow:none;" id="registro_usuario">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="m-demo-icon__preview">
+                    <!--<i class="flaticon-folder-4"></i>-->
+                </div>
+                <h4 class="modal-title">Registro de usuario</h4>
+                <small>Ingrese los datos para registrar un usuario con acceso al sistema</small>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("txtUsuDNI", "DNI", new { Class = "control-label" })<span class="requerido"> (*)</span>
+                        @Html.TextBox("txtUsuDNI", "", new { Class = "form-control input-sm", maxlength = "8" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtUsuNOMBRES", "NOMBRES", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtUsuNOMBRES", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtUsuAPELLIDO_PATERNO", "APELLIDO PATERNO", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtUsuAPELLIDO_PATERNO", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtUsuAPELLIDO_MATERNO", "APELLIDO MATERNO", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtUsuAPELLIDO_MATERNO", "", new { Class = "form-control input-sm", maxlength = "50" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("ddlUsuID_ROL", "ROL", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.DropDownList("ddlUsuID_ROL", ViewBag.lisROL_USUARIO as SelectList, new { Class = "form-control input-sm" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtUsuUSUARIO", "USUARIO", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        @Html.TextBox("txtUsuUSUARIO", "", new { Class = "form-control input-sm", maxlength = "30" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.Label("txtUsuCONTRASENIA", "CONTRASEÑA", new { Class = "control-label" }) <span class="requerido"> (*)</span>
+                        <div class="input-group">
+                            @Html.Password("txtUsuCONTRASENIA", "", new { Class = "form-control input-sm", maxlength = "30" })
+                            <span class="input-group-btn">
+                                <button id="btnVerPass" class="btn btn-sm btn-default" data-original-title='' data-toggle='tooltip' data-placement='top'> <i class="fa fa-eye"></i> </button>
+                            </span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.Label("txtUsuCORREO", "CORREO ELECTRÓNICO", new { Class = "control-label" })
+                        @Html.TextBox("txtUsuCORREO", "", new { Class = "form-control input-sm", maxlength = "150" })
+                    </div>
+
+                    @*<div class="col-md-8">
+                        <p style="padding:8px; font-size:12px;text-align: left;" class="control-label bg-secondary">
+                            <i class="fa fa-info-circle"></i> <strong><u>Considerar que:</u></strong><br />
+                            - La contraseña debe tener como mínimo 8 caracteres.<br />
+                            - La contraseña debe tener por lo menos una letra MAYÚSCULA.<br />
+                            - La contraseña debe tener por lo menos una letra MINÚSCULA.<br />
+                            - La contraseña debe tener por lo menos un NÚMERO.<br />
+                            - La contraseña debe tener por lo menos un CARACTER ESPECIAL (Ejemplo: * $ # & .)<br />
+                        </p>
+                    </div>*@
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id='btnUsuAceptar' class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Grabar</button>
+                <button type="button" id='btnUsuCancelar' class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<input type="hidden" name="idmenuset" value="0500" />
+<input type="hidden" name="idopcset" value="0501" />
+@section Scripts {
+    <script type="text/javascript" nonce="@Html.ScriptNonce()" src="@Url.Content("~/Scripts/views/Mantenimientos/usuario.js?v=" + @ViewBag.MED_VERSION_JS + "")"></script>
+
+}
+

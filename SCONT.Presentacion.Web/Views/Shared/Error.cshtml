@@ -1,0 +1,13 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@if (!Request.IsAuthenticated)
+{
+    <script type="text/javascript" nonce="@Html.ScriptNonce()">window.location.href = '@Url.Action("Presentacion", "Account")'; </script>
+}
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">Ocurrió un error mientras se procesaba su solicitud.</h2>
+

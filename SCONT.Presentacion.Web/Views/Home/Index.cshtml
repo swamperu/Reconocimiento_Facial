@@ -1,0 +1,192 @@
+﻿@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Página Principal";
+}
+<input type="hidden" id="hfTab" value="" />
+
+
+
+<style>
+    .titulo-splash span {
+        color: #1B2631 !important;
+        font-weight: 300 !important;
+    }
+
+    .section_pdfs {
+        float: left;
+        width: 100%;
+    }
+
+        .section_pdfs ul.listado-pdfs {
+            float: left;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+            .section_pdfs ul.listado-pdfs li {
+                float: left;
+                width: 30.5%;
+                list-style: none !important;
+                text-align: center !important;
+                border: 1px solid #1B4F72;
+                padding: 10px !important;
+                margin: 5px !important;
+                border-radius: 3px !important;
+                color: #fff !important;
+                background-color: #2874A6;
+            }
+
+                .section_pdfs ul.listado-pdfs li a {
+                    color: black !important;
+                    font-weight: 100 !important;
+                }
+
+                    .section_pdfs ul.listado-pdfs li a span i {
+                    }
+
+                    .section_pdfs ul.listado-pdfs li a p {
+                        font-size: 14px !important;
+                        line-height: 15px;
+                        margin-top: 8px !important;
+                    }
+
+    .p-0 {
+    }
+
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .m-portlet.m-portlet--full-height {
+        height: calc(100% - 2.2rem);
+    }
+
+    .m-b-0 {
+        margin-bottom: 0 !important;
+    }
+
+    .m-portlet.m-portlet--full-height .m-portlet__body {
+        height: calc(100% - 2.2rem - 2.2rem);
+    }
+
+    .m-portlet .m-portlet__body {
+        color: #575962;
+    }
+
+    .m-widget19 .m-widget19__pic {
+        position: relative;
+    }
+
+        .m-widget19 .m-widget19__pic > img {
+            width: 100%;
+            margin-top: -1px !important;
+            opacity: 0.2;
+        }
+
+    img {
+        vertical-align: middle;
+    }
+
+    img {
+        border: 0;
+    }
+
+    .m-widget19 .m-widget19__pic .m-widget19__title {
+        position: absolute;
+        bottom: 550px;
+        display: block;
+        z-index: 1;
+        padding-left: 2.2rem;
+        padding-bottom: 1.1rem;
+    }
+
+    .titulo-splash {
+        top: 5%;
+        color: #154360 !important;
+        left: 80px;
+        font-size: 40px;
+        font-weight: 700 !important;
+        margin-top: 25px;
+    }
+
+    .l49p {
+        width: 49% !important;
+    }
+
+    .panel-heading {
+        font-size: 15px !important;
+        cursor: pointer;
+    }
+
+    .block-title h5 {
+        font-size: 16px;
+    }
+
+
+    .panel-body p {
+        margin-bottom: 10px;
+    }
+
+    .link_alerta {
+        cursor: pointer;
+        float: right;
+        color: darkblue;
+    }
+</style>
+
+
+
+@*<div class="row p-0">
+
+        <div class="col-md-16 p-0">
+            <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height m-portlet--rounded-force m-b-0">
+                <div class="m-portlet__body p-0">
+                    <div class="m-widget19">
+                        <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides">
+                            <img src="~/Images/inicio_02.jpg" alt="">
+                            <h1 class="titulo-splash m-widget19__title m--font-light l49p"><span>Sistema de  contratos</span><br />SISCONTRATO - MINEDU</h1>
+
+                            <div class="contenido_bienvenida">
+                                <h1>Bienvenido</h1>
+                                <p style="text-align:justify;">
+                                    El Sistema de Contratos - SISCRONTRATO, del Ministerio de Educación, es una herramienta informática que permite realizar el seguimiento y control de los contratos suscritos por el Ministerio de Educación,
+                                    desde la generación del cronograma de pagos, pasando por el registro de incidencias (incrementos, rebajas, resoluciones), hasta el registro de los pagos correspondientes (notas de abono, penalidades, proveidos).
+
+                                </p>
+                                <br />
+                                <h1>Manual de usuario</h1>
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <div class="section_pdfs">
+
+                                            <ul class="listado-pdfs">
+                                                <li>
+                                                    <a class="nav-link" data-toggle="pill" href="#menu11">
+                                                        <span><i class="fa fa-file-pdf-o"></i></span>
+                                                        <p>Manual Usuario 01</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>*@
+
+@section Scripts {
+    <script type="text/javascript" nonce="@Html.ScriptNonce()" src="@Url.Content("~/Scripts/views/PaginaInicial.js?v=" + @ViewBag.MED_VERSION_JS + "")"></script>
+}

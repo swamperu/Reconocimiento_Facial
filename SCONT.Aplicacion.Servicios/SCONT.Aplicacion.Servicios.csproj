@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA8036D8-A17F-43E1-8786-DD795D271ED0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCONT.Aplicacion.Servicios</RootNamespace>
+    <AssemblyName>SCONT.Aplicacion.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Maestro\tabla_generalService.cs" />
+    <Compile Include="Maestro\trabajadorService.cs" />
+    <Compile Include="Maestro\ubigeoService.cs" />
+    <Compile Include="Parametrica\parametro_generalService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistema\HelperAES.cs" />
+    <Compile Include="Sistema\recursoService.cs" />
+    <Compile Include="Sistema\usuarioService.cs" />
+    <Compile Include="Sistema\usuario_rolService.cs" />
+    <Compile Include="Transaccional\marcacionService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCONT.Aplicacion.Contratos\SCONT.Aplicacion.Contratos.csproj">
+      <Project>{b3977e4a-b8f3-4b71-b580-f4035d658511}</Project>
+      <Name>SCONT.Aplicacion.Contratos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCONT.Dominio.Contratos\SCONT.Dominio.Contratos.csproj">
+      <Project>{506966ea-088b-4d1b-abd4-bf95486ef20d}</Project>
+      <Name>SCONT.Dominio.Contratos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCONT.Dominio.Entidades\SCONT.Dominio.Entidades.csproj">
+      <Project>{286fc590-9e26-4c7a-b27c-f673c399561c}</Project>
+      <Name>SCONT.Dominio.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCONT.Infraestructura.Dao\SCONT.Infraestructura.Dao.csproj">
+      <Project>{d3094890-4fe3-4fb4-b1f9-f61003f38b01}</Project>
+      <Name>SCONT.Infraestructura.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCONT.Infraestructura.Transversal\SCONT.Infraestructura.Transversal.csproj">
+      <Project>{02dca0e9-addb-4f77-be61-1f48d0ba0421}</Project>
+      <Name>SCONT.Infraestructura.Transversal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCONT.Servicios.Externos\SCONT.Servicios.Externos.csproj">
+      <Project>{0977d931-67e2-4161-afd7-fd208e5c1e39}</Project>
+      <Name>SCONT.Servicios.Externos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reporte\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
